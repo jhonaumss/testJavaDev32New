@@ -1,6 +1,8 @@
 package org.fundacionjala.app.quizz;
 
 import org.fundacionjala.app.quizz.console.QuizUIHandler;
+import org.fundacionjala.app.quizz.console.util.DataPersistence;
+import org.fundacionjala.app.quizz.model.FormQuizzes;
 import org.fundacionjala.app.quizz.model.Quiz;
 import org.fundacionjala.app.quizz.model.QuizAnswers;
 import org.fundacionjala.app.quizz.console.util.InputReader;
@@ -31,6 +33,10 @@ public class Menu {
                 break;
             case '4':
                 shouldExit = true;
+                saveData();
+                break;
+            case '5':
+                readData();
                 break;
             default:
                 System.out.println("Invalid option");
@@ -39,6 +45,22 @@ public class Menu {
 
         System.out.println(System.lineSeparator());
         return shouldExit;
+    }
+
+    private void readData() {
+        FormQuizzes formQuizzes = DataPersistence.readData();
+        if(formQuizzes.getQuiz() !=null && formQuizzes.getQuizAnswers() != null){
+            quiz = formQuizzes.getQuiz();
+            quizAnswers = formQuizzes.getQuizAnswers();
+        }else{
+            System.out.println("Something went wrong loading the data, please try again");
+        }
+    }
+
+    private void saveData() {
+        FormQuizzes formQuizzes = new FormQuizzes(quiz, quizAnswers);
+        String response = DataPersistence.saveData(formQuizzes);
+        System.out.println(response);
     }
 
     private void showQuiz() {
@@ -65,7 +87,8 @@ public class Menu {
         System.out.println("1. Create quiz");
         System.out.println("2. Fill quiz");
         System.out.println("3. Show quiz");
-        System.out.println("4. Exit");
+        System.out.println("4. Load previous quizzes");
+        System.out.println("5. Exit");
         System.out.println("======================================");
     }
 }
