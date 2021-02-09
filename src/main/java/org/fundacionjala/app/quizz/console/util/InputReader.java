@@ -14,6 +14,11 @@ public final class InputReader {
     }
 
     public static char readOption() {
-        return readLine().trim().charAt(0);
+        System.out.println(readLine().trim());
+        try{
+            return readLine().trim().charAt(0);
+        }catch (Exception exception){
+            return 'Z';
+        }
     }
 }

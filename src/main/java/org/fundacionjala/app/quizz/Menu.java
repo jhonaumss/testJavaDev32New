@@ -31,12 +31,13 @@ public class Menu {
             case '3':
                 showQuiz();
                 break;
+
             case '4':
-                shouldExit = true;
-                saveData();
+                readData();
                 break;
             case '5':
-                readData();
+                shouldExit = true;
+                saveData();
                 break;
             default:
                 System.out.println("Invalid option");

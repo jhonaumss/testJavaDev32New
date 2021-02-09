@@ -4,7 +4,10 @@ public enum ValidatorType {
     REQUIRED(1, "Required", new RequiredValidator()),
     DATE(2, "Date", new DateValidator()),
     MIN(3, "Min", new MinValidator()),
-    MIN_LENGTH(4, "Min Length", new MinLengthValidator());
+    MIN_LENGTH(4, "Min Length", new MinLengthValidator()),
+    MAX(6, "Max", new MaxValidator()),
+    MAX_LENGTH(7, "Max Length", new MaxLengthValidator()),
+    ONLY_UPPERCASE_TEXT(8, "Only Uppercase Text", new OnlyUpperCaseTextValidator());
 
     private final int code;
     private final String displayName;
